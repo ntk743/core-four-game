@@ -1,0 +1,26 @@
+{
+  "version": "beta-rc6",
+  "random_topics": 100,
+  "daily_topics": 60,
+  "total_topics": 160,
+  "total_answer_records": 14566,
+  "total_aliases": 17030,
+  "topics_with_placeholder_candidates": [],
+  "topics_with_duplicate_answers": [],
+  "topics_under_4_answers": [],
+  "topics_without_positive_perfect_raw": [],
+  "topics_with_bad_percentiles": [],
+  "daily_random_overlap_count": 0,
+  "javascript_syntax": "PASS",
+  "first_100_random_topics_unique": true,
+  "daily_changes_across_three_days": true,
+  "sample_daily_indices": [
+    45,
+    46,
+    47
+  ],
+  "score_invariant_failures": [],
+  "missing_required_ids": [],
+  "missing_required_functions": [],
+  "all_static_checks_pass": true
+}

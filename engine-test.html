@@ -1,0 +1,12 @@
+<!doctype html><meta charset="utf-8"><title>Core Four Data Engine Test</title>
+<style>body{font-family:system-ui;max-width:900px;margin:40px auto;padding:20px}button{padding:14px 20px}pre{white-space:pre-wrap;background:#f4f4f4;padding:16px;border-radius:12px}</style>
+<h1>Core Four Data Engine Test</h1><p id="meta">Loading…</p><button id="next">Next random topic</button><pre id="out"></pre>
+<script>
+fetch('core-four-data.json').then(r=>r.json()).then(data=>{
+ const m=data.meta; document.querySelector('#meta').textContent=`${m.random_topic_count} Random topics · ${m.daily_topic_count} Daily topics · ${m.candidates_per_topic} candidates/topic · ${(m.random_simulated_ballots+m.daily_simulated_ballots).toLocaleString()} simulated games`;
+ let bag=[];
+ function refill(){bag=data.random_topics.map((_,i)=>i); for(let i=bag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bag[i],bag[j]]=[bag[j],bag[i]]}}
+ function next(){if(!bag.length)refill();const t=data.random_topics[bag.shift()];document.querySelector('#out').textContent=JSON.stringify({topic:t.title,remaining_before_repeat:bag.length,percentiles:t.simulation.percentiles,perfect_four:t.simulation.perfect_four,top10:t.candidates.slice().sort((a,b)=>b.sim_selection_rate-a.sim_selection_rate).slice(0,10).map(x=>[x.name,x.sim_selection_rate])},null,2)}
+ document.querySelector('#next').onclick=next;next();
+});
+</script>
